@@ -1,0 +1,16 @@
+1. CHOOSE NAME AND AGE
+
+2. CHOOSE HEROIC CULTURE
+THis determines 
+- Cultural Blessing, 
+- Attributes, Attribute TNs
+- Derived stats: Endurance, HOpe and Parry
+- Skill and Combat proficiencies
+- Distinctive Features
+
+3. CHOOSE CALLING
+
+4. CHOOSE STARTING GEAR
+
+5. CHOOSE STARTING REWARD AND VIRTUE
+- Record VALOUR and WISDOM at 1
