@@ -2,4 +2,7 @@
 
 
 // var culture = JSON.parse(request.responseText);
-$("#charname").text("Hello World!");
+
+$.getJSON("JSON/heroic-cultures/barding.json", (data) => {
+
+});

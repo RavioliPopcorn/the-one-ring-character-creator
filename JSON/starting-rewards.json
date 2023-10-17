@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Close-fitting",
+        "type": "armour or helm",
+        "description": "Add +2 to the result of your PROTECTION roll."
+    },
+    {
+        "name": "Cunning Make",
+        "type": "armour, helm or shield",
+        "description": "Reduce your Load rating by 2."
+    },
+    {
+        "name": "Fell",
+        "type": "weapon",
+        "description": "Raise the Injury rating of a weapon by 2."
+    },
+    {
+        "name": "Grievous",
+        "type": "weapon",
+        "description": "Raise the Damage rating of a weapon by 1."
+    },
+    {
+        "name": "Keen",
+        "type": "weapon",
+        "description": "Attack rolls score a Piercing Blow on a 9+."
+    },
+    {
+        "name": "Reinforced",
+        "type": "shield",
+        "description": "Raise a shield’s Parry bonus by +1."
+    }
+]

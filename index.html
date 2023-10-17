@@ -6,13 +6,46 @@
     <title>The One Ring Character Creator</title>
 </head>
 <body>
-    <form>
-        <label for="charname">Name</label><br>
-        <input type="text" id="charname" name="charname"><br>
-        <label for="charage">Age</label><br>
-        <input type="text" id="charage" name="charage"><br>
-    </form>
+
+    <div>
+        <form>
+            <label for="charname">Name</label><br>
+            <input type="text" id="charname" name="charname"><br>
+            <label for="charage">Age</label><br>
+            <input type="text" id="charage" name="charage"><br>
+        </form>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="culture">Culture</label> <br>
+        <select id="cultureSelection">
+            <option value="barding">Barding</option>
+            <option value="dwarf">Dwarf of Durin's Folk</option>
+            <option value="elf">Elf of Lindon</option>
+            <option value="hobbit">Hobbit of The Shire</option>
+            <option value="breeMan">Man of Bree</option>
+            <option value="ranger">Rangers of The North</option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="culture">Calling</label> <br>
+        <select id="callingSelection">
+            <option value="captain">Captain</option>
+            <option value="champion">Champion</option>
+            <option value="messenger">Messenger</option>
+            <option value="scholar">Scholar</option>
+            <option value="treasureHunter">Treasure Hunter</option>
+            <option value="warden">Warden</option>
+        </select>
+    </div>
+
     
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/index.js"></script>
 </body>

@@ -1,0 +1,47 @@
+{
+    "name": "Elf of Lindon",
+    "blessing": {
+        "blessingName": "Elven-skill",
+        "description": "If you are not Miserable, you can spend 1 point of Hope to achieve a Magical success on a skill roll."
+    },
+    "flaw": {
+        "flawName": "The Long Defeat",
+        "description": "When it is time to remove accumulated Shadow during the Fellowship Phase, you can only remove a maximum of 1 point (see Spiritual Recovery, page 119)."
+    },
+    "livingStandard": "frugal",
+    "attributes": {
+        "strength": [5,4,5,4,5,6],
+        "heart": [2,3,3,4,4,2],
+        "wits": [7,7,6,6,5,6]
+    },
+    "derivedStats": {
+        "endurance": 20,
+        "hope": 8,
+        "parry": 12
+    },
+    "skills": {
+        "awe": ["none", 2],
+        "athletics": ["none", 2],
+        "awareness": ["none", 2],
+        "hunting": ["none", 0],
+        "song": ["favoured", 2],
+        "craft": ["none", 2],
+        "enhearten": ["none", 1],
+        "travel": ["none", 0],
+        "insight": ["none", 0],
+        "healing": ["none", 1],
+        "courtesy": ["none", 0],
+        "battle": ["none", 0],
+        "persuade": ["none", 0],
+        "stealth": ["none", 3],
+        "scan": ["none", 0],
+        "explore": ["none", 0],
+        "riddle": ["none", 0],
+        "lore": ["favoured", 3]
+    },
+    "combatProficiency": {
+        "firstProficiency": ["bows", "spears"],
+        "secondProficiency": ["bows", "swords", "axes", "spears"]
+    },
+    "distinctiveFeatures": ["Fair", "Keen-eyed", "Lordly", "Merry", "Patient", "Subtle", "Swift", "Wary"]
+}

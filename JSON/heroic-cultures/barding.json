@@ -2,7 +2,7 @@
     "name": "Barding",
     "blessing": {
         "blessingName": "Stout-Hearted",
-        "description": "Your VALOUR rolls are Favoured"
+        "description": "Your VALOUR rolls are Favoured."
     },
     "livingStandard": "prosperous",
     "attributes": {
@@ -17,12 +17,12 @@
     },
     "skills": {
         "awe": ["none", 1],
-        "athletics": ["favored", 1],
+        "athletics": ["favoured", 1],
         "awareness": ["none", 0],
         "hunting": ["none", 2],
         "song": ["none", 1],
         "craft": ["none", 1],
-        "enhearten": ["none", 2],
+        "enhearten": ["favoured", 2],
         "travel": ["none", 1],
         "insight": ["none", 2],
         "healing": ["none", 0],

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Confidence",
+        "description": "Raise your Hope by 2."
+    },
+    {
+        "name": "Dour-handed",
+        "description": "Add +1 to the damage inflicted on a Heavy Blow."
+    },
+    {
+        "name": "Hardiness",
+        "description": "Raise your Endurance by 2."
+    },
+    {
+        "name": "Mastery",
+        "description": "Choose two Skills and make them Favoured."
+    },
+    {
+        "name": "Nimbleness",
+        "description": "Raise your Parry rating by 1."
+    },
+    {
+        "name": "Prowess",
+        "description": "— Reduce one Attribute TN by 1."
+    }
+]

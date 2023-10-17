@@ -1,0 +1,47 @@
+{
+    "name": "Hobbit of The Shire",
+    "blessing": {
+        "blessingName": "Hobbit-sense",
+        "description": "Your WISDOM rolls are Favoured, and you gain (1d) on all Shadow Tests made to resist the efects of Greed"
+    },
+    "flaw": {
+        "flawName": "Haflings",
+        "description": "Hobbits cannot use larger weapons. Hobbits can only use the axe, bow, club, cudgel, dagger, short sword, short spear, spear. Additionally, Hobbits cannot use a great shield."
+    },
+    "livingStandard": "common",
+    "attributes": {
+        "strength": [3,3,2,4,4,2],
+        "heart": [6,7,7,6,5,6],
+        "wits": [5,4,5,4,5,6]
+    },
+    "derivedStats": {
+        "endurance": 18,
+        "hope": 10,
+        "parry": 12
+    },
+    "skills": {
+        "awe": ["none", 0],
+        "athletics": ["none", 0],
+        "awareness": ["none", 2],
+        "hunting": ["none", 0],
+        "song": ["none", 2],
+        "craft": ["none", 1],
+        "enhearten": ["none", 0],
+        "travel": ["none", 0],
+        "insight": ["none", 2],
+        "healing": ["none", 1],
+        "courtesy": ["favoured", 2],
+        "battle": ["none", 0],
+        "persuade": ["none", 2],
+        "stealth": ["favoured", 3],
+        "scan": ["none", 0],
+        "explore": ["none", 0],
+        "riddle": ["none", 3],
+        "lore": ["none", 0]
+    },
+    "combatProficiency": {
+        "firstProficiency": ["bows", "swords"],
+        "secondProficiency": ["bows", "swords", "axes", "spears"]
+    },
+    "distinctiveFeatures": ["Eager", "Fair-spoken", "Faithful", "Honourable", "Inquisitive", "Keen-eyed", "Merry", "Rustic"]
+}

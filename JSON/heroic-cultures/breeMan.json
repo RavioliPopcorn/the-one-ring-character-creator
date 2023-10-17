@@ -1,0 +1,43 @@
+{
+    "name": "Man of Bree",
+    "blessing": {
+        "blessingName": "Bree-blood",
+        "description": "Each Man of Bree in the Company increases the Fellowship Rating by 1 point."
+    },
+    "livingStandard": "common",
+    "attributes": {
+        "strength": [2,3,3,4,4,2],
+        "heart": [5,4,5,4,5,6],
+        "wits": [7,7,6,6,5,6]
+    },
+    "derivedStats": {
+        "endurance": 20,
+        "hope": 10,
+        "parry": 10
+    },
+    "skills": {
+        "awe": ["none", 0],
+        "athletics": ["none", 1],
+        "awareness": ["none", 1],
+        "hunting": ["none", 1],
+        "song": ["none", 1],
+        "craft": ["none", 2],
+        "enhearten": ["none", 2],
+        "travel": ["none", 1],
+        "insight": ["favoured", 2],
+        "healing": ["none", 0],
+        "courtesy": ["none", 3],
+        "battle": ["none", 0],
+        "persuade": ["none", 2],
+        "stealth": ["none", 1],
+        "scan": ["none", 1],
+        "explore": ["none", 1],
+        "riddle": ["favoured", 2],
+        "lore": ["none", 0]
+    },
+    "combatProficiency": {
+        "firstProficiency": ["axes", "spears"],
+        "secondProficiency": ["bows", "swords", "axes", "spears"]
+    },
+    "distinctiveFeatures": ["Cunning", "Fair-spoken", "Faithful", "Generous", "Inquisitive", "Patient", "Rustic", "True-hearted"]
+}

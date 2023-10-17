@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Buckler",
+        "parry": "+1",
+        "load": 2
+    },
+    {
+        "name": "Shield",
+        "parry": "+2",
+        "load": 4
+    },
+    {
+        "name": "Great Shield",
+        "parry": "+3",
+        "load": 6
+    }
+]

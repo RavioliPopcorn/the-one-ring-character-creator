@@ -1,0 +1,6 @@
+{
+    "name": "Treasure Hunter",
+    "favouredSkills": ["Explore", "Scan", "Stealth"],
+    "distinctiveFeature": "Burglary",
+    "shadowPath": "Dragon-sickness"
+}

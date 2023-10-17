@@ -1,0 +1,48 @@
+{
+    "name": "Dwarf of Durin's Folk",
+    "blessing": {
+        "blessingName": "Redoubtable",
+        "description": "You halve the Load rating of any armour you're wearing (rounding fractions up), including helms (but not shields)."
+    },
+    "flaw": {
+        "flawName": "Naugrim",
+        "description": "Dwarven adventurers cannot use the following pieces of war gear: great bow, great spear, and great shield."
+    },
+    "livingStandard": "prosperous",
+    "attributes": {
+        "strength": [7,7,6,6,5,6],
+        "heart": [2,3,3,4,4,2],
+        "wits": [5,4,5,4,5,6]
+    },
+    "derivedStats": {
+        "endurance": 22,
+        "hope": 8,
+        "parry": 10
+    },
+    "skills": {
+        "awe": ["none", 2],
+        "athletics": ["none", 1],
+        "awareness": ["none", 0],
+        "hunting": ["none", 0],
+        "song": ["none", 1],
+        "craft": ["favoured", 2],
+        "enhearten": ["none", 0],
+        "travel": ["favoured", 3],
+        "insight": ["none", 0],
+        "healing": ["none", 0],
+        "courtesy": ["none", 1],
+        "battle": ["none", 1],
+        "persuade": ["none", 0],
+        "stealth": ["none", 0],
+        "scan": ["none", 3],
+        "explore": ["none", 2],
+        "riddle": ["none", 2],
+        "lore": ["none", 1]
+    },
+    "combatProficiency": {
+        "firstProficiency": ["axes", "swords"],
+        "secondProficiency": ["bows", "swords", "axes", "spears"]
+    },
+    "distinctiveFeatures": ["Cunning", "Fierce", "Lordly", "Proud", 
+    "Secretive", "Stern", "Wary", "Wilful"]
+}

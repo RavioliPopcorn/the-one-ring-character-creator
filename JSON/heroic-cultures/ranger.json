@@ -1,0 +1,47 @@
+{
+    "name": "Ranger of the North",
+    "blessing": {
+        "blessingName": "Kings of Men",
+        "description": "Add 1 point to one Attribute of your choice."
+    },
+    "flaw": {
+        "flawName": "Allegiance of The Dunedain",
+        "description": "During the Fellowship phase you recover a maximum number of Hope points equal to half your HEART score (rounding fractions up)."
+    },
+    "livingStandard": "frugal",
+    "attributes": {
+        "strength": [7,7,6,6,5,6],
+        "heart": [5,4,5,4,5,6],
+        "wits": [2,3,3,4,4,2]
+    },
+    "derivedStats": {
+        "endurance": 20,
+        "hope": 6,
+        "parry": 14
+    },
+    "skills": {
+        "awe": ["none", 1],
+        "athletics": ["none", 2],
+        "awareness": ["none", 2],
+        "hunting": ["favoured", 2],
+        "song": ["none", 0],
+        "craft": ["none", 0],
+        "enhearten": ["none", 0],
+        "travel": ["none", 2],
+        "insight": ["none", 0],
+        "healing": ["none", 2],
+        "courtesy": ["none", 0],
+        "battle": ["none", 2],
+        "persuade": ["none", 0],
+        "stealth": ["none", 2],
+        "scan": ["none", 1],
+        "explore": ["none", 2],
+        "riddle": ["none", 0],
+        "lore": ["favoured", 2]
+    },
+    "combatProficiency": {
+        "firstProficiency": ["spears", "swords"],
+        "secondProficiency": ["bows", "swords", "axes", "spears"]
+    },
+    "distinctiveFeatures": ["Bold", "Honourable", "Secretive", "Stern", "Subtle", "Swift", "Tall", "True-hearted"]
+}

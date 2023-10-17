@@ -1,0 +1,130 @@
+[
+    {
+        "name": "Unarmed",
+        "damage": 1,
+        "injury": "-",
+        "load": 0,
+        "proficiency": "brawling",
+        "notes": "Includes throwing stones. Cannot cause a Piercing Blow."
+    },
+    {
+        "name": "Dagger",
+        "damage": 2,
+        "injury": 14,
+        "load": 0,
+        "proficiency": "brawling",
+        "notes": "-"
+    },
+    {
+        "name": "Cudgel",
+        "damage": 3,
+        "injury": 12,
+        "load": 0,
+        "proficiency": "brawling",
+        "notes": "-"
+    },
+    {
+        "name": "Club",
+        "damage": 4,
+        "injury": 14,
+        "load": 1,
+        "proficiency": "brawling",
+        "notes": "-"
+    },
+    {
+        "name": "Short Sword",
+        "damage": 3,
+        "injury": 16,
+        "load": 1,
+        "proficiency": "swords",
+        "notes": "-"
+    },
+    {
+        "name": "Sword",
+        "damage": 4,
+        "injury": 16,
+        "load": 2,
+        "proficiency": "swords",
+        "notes": "-"
+    },
+    {
+        "name": "Long Sword",
+        "damage": 5,
+        "injury": [16,18],
+        "load": 3,
+        "proficiency": "swords",
+        "notes": "Can be used 1 or 2-handed."
+    },
+    {
+        "name": "Short Spear",
+        "damage": 3,
+        "injury": 14,
+        "load": 2,
+        "proficiency": "spears",
+        "notes": "Can be thrown."
+    },
+    {
+        "name": "Spear",
+        "damage": 4,
+        "injury": [14,16],
+        "load": 3,
+        "proficiency": "spears",
+        "notes": "Can be 1 or 2-handed. Can be thrown."
+    },
+    {
+        "name": "Great Spear",
+        "damage": 5,
+        "injury": 16,
+        "load": 4,
+        "proficiency": "spears",
+        "notes": "2-handed"
+    },
+    {
+        "name": "Axe",
+        "damage": 5,
+        "injury": 18,
+        "load": 2,
+        "proficiency": "axes",
+        "notes": "-"
+    },
+    {
+        "name": "Long-hafted Axe",
+        "damage": 6,
+        "injury": [18,20],
+        "load": 3,
+        "proficiency": "axes",
+        "notes": "Can be used 1 or 2-handed."
+    },
+    {
+        "name": "Great Axe",
+        "damage": 7,
+        "injury": 20,
+        "load": 4,
+        "proficiency": "axes",
+        "notes": "2-handed"
+    },
+    {
+        "name": "Mattock",
+        "damage": 7,
+        "injury": 18,
+        "load": 3,
+        "proficiency": "axes",
+        "notes": "2-handed"
+    },
+    {
+        "name": "Bow",
+        "damage": 3,
+        "injury": 14,
+        "load": 2,
+        "proficiency": "bows",
+        "notes": "Ranged weapon."
+    },
+    {
+        "name": "Great Bow",
+        "damage": 4,
+        "injury": 16,
+        "load": 4,
+        "proficiency": "bows",
+        "notes": "Ranged weapon."
+    }
+]
