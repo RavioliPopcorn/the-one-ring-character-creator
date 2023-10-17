@@ -26,6 +26,7 @@ const blessingText = $("#blessingText");
 const flawText = $("#flawText");
 const shadowPathText = $("#shadowPathText");
 const callingText = $("#callingText");
+const distinctiveFeatureText = $("#distinctiveFeatureText");
 
 // Generate character when user presses button
 $("#genCharButton").click(() => {
@@ -45,31 +46,37 @@ function getCallingInfo() {
         case "Captain":
             $.getJSON(captainPath, (data) => {
                 shadowPathText.append(data.shadowPath);
+                distinctiveFeatureText.append(data.distinctiveFeature);
             });
             break;
         case "Champion":
             $.getJSON(championPath, (data) => {
                 shadowPathText.append(data.shadowPath);
+                distinctiveFeatureText.append(data.distinctiveFeature);
             });
             break;
         case "Messenger":
             $.getJSON(messengerPath, (data) => {
                 shadowPathText.append(data.shadowPath);
+                distinctiveFeatureText.append(data.distinctiveFeature);
             });
             break;
         case "Scholar":
             $.getJSON(scholarPath, (data) => {
                 shadowPathText.append(data.shadowPath);
+                distinctiveFeatureText.append(data.distinctiveFeature);
             });
             break;
         case "Treasure Hunter":
             $.getJSON(treasureHunterPath, (data) => {
                 shadowPathText.append(data.shadowPath);
+                distinctiveFeatureText.append(data.distinctiveFeature);
             });
             break;
         case "Warden":
             $.getJSON(wardenPath, (data) => {
                 shadowPathText.append(data.shadowPath);
+                distinctiveFeatureText.append(data.distinctiveFeature);
             });
             break;
         default:
@@ -128,4 +135,5 @@ function resetCharSheet() {
     flawText.html("Cultural Flaw: ");
     callingText.html("Calling: ");
     shadowPathText.html("Shadow Path: ")
+    distinctiveFeatureText.html("Distinctive Features: ")
 }
