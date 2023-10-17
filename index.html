@@ -17,21 +17,18 @@
             <input type="text" id="charage" name="charage"><br>
         </form>
     </div>
-
     <br>
-
     <div>
         <label for="culture">Culture</label> <br>
         <select id="cultureSelection">
-            <option value="barding">Barding</option>
-            <option value="dwarf">Dwarf of Durin's Folk</option>
-            <option value="elf">Elf of Lindon</option>
-            <option value="hobbit">Hobbit of The Shire</option>
-            <option value="breeMan">Man of Bree</option>
-            <option value="ranger">Rangers of The North</option>
+            <option value="Barding">Barding</option>
+            <option value="Dwarf of Durin's Folk">Dwarf of Durin's Folk</option>
+            <option value="Elf of Lindon">Elf of Lindon</option>
+            <option value="Hobbit of The shire">Hobbit of The Shire</option>
+            <option value="Man of Bree">Man of Bree</option>
+            <option value="Rangers of The North">Rangers of The North</option>
         </select>
     </div>
-
     <div id="culturebox">
         <br>
         <label for="proficiencies">Proficiencies</label> <br>
@@ -47,31 +44,33 @@
             <option value="spears">Spears</option>
         </select>
     </div>
-
     <br>
-
     <div>
         <label for="culture">Calling</label> <br>
         <select id="callingSelection">
-            <option value="captain">Captain</option>
-            <option value="champion">Champion</option>
-            <option value="messenger">Messenger</option>
-            <option value="scholar">Scholar</option>
-            <option value="treasureHunter">Treasure Hunter</option>
-            <option value="warden">Warden</option>
+            <option value="Captain">Captain</option>
+            <option value="Champion">Champion</option>
+            <option value="Messenger">Messenger</option>
+            <option value="Scholar">Scholar</option>
+            <option value="Treasure Hunter">Treasure Hunter</option>
+            <option value="Warden">Warden</option>
         </select>
     </div>
+    <br>
+    <button id="genCharButton">Generate Character Sheet</button>
 
     <hr>
+
     <h1>Character Sheet</h1>
 
     <h2>General Info</h2>
-    <p>Name: </p>
-    <p>Age: </p>
-    <p>Heroic Culture: </p>
-    <p>Cultural Blessing: </p>
-    <p>Calling: </p>
-    <p>Shadow Path: </p>
+    <p id="nameText">Name: </p>
+    <p id="ageText">Age: </p>
+    <p id="cultureText">Heroic Culture: </p>
+    <p id="blessingText">Cultural Blessing: </p>
+    <p id="flawText">Cultural Flaw: </p>
+    <p id="callingText">Calling: </p>
+    <p id="shadowPathText">Shadow Path: </p>
 
     <h2>Strength</h2>
     <p>Strength Rating: </p>
@@ -87,6 +86,106 @@
     <p>Wits Rating: </p>
     <p>Wits TN: </p>
     <p>Parry: </p>
+
+    <h2>Skills</h2>
+    <div>
+        <input type="checkbox" id="awe-check">
+        <label id="awe-level">Awe: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="athletics-check">
+        <label id="athletics-level">Athletics: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="awareness-check">
+        <label id="awareness-level">Awareness: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="hunting-check">
+        <label id="hunting-level">Hunting: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="song-check">
+        <label id="song-level">Song: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="craft-check">
+        <label id="craft-level">Craft: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="enhearten-check">
+        <label id="enhearten-level">Enhearten: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="travel-check">
+        <label id="travel-level">Travel: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="insight-check">
+        <label id="insight-level">Insight: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="healing-check">
+        <label id="healing-level">Healing: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="courtesy-check">
+        <label id="courtesy-level">Courtesy: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="battle-check">
+        <label id="battle-level">Battle: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="persuade-check">
+        <label id="persuade-level">Persuade: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="stealth-check">
+        <label id="stealth-level">Stealth: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="scan-check">
+        <label id="scan-level">Scan: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="explore-check">
+        <label id="explore-level">Explore: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="riddle-check">
+        <label id="riddle-level">Riddle: </label>
+    </div>
+    <div>
+        <input type="checkbox" id="lore-check">
+        <label id="lore-level">Lore: </label>
+    </div>
+
+    <h2>Combat</h2>
+    <p id="axes-level">Axes: </p>
+    <p id="bows-level">Bows: </p>
+    <p id="spears-level">Spears: </p>
+    <p id="swords-level">Swords: </p>
+
+    <h2>War Gear</h2>
+    <ul id="war-gear"> 
+    </ul>
+
+    <h2>Armour</h2>
+    <p>Armour: </p>
+    <p>Helm: </p>
+    <p>Shield: </p>
+
+    <h2>Rewards</h2>
+    <p>Valour: 1</p>
+    <ul id="rewards"> 
+    </ul>
+
+    <h2>Virtues</h2>
+    <p>Wisdom: 1</p>
+    <ul id="virtues"> 
+    </ul>
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/index.js"></script>

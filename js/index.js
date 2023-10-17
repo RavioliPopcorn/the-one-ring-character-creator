@@ -1,8 +1,131 @@
-// const data = "{\"name\":\"Barding\",\"blessing\":{\"blessingName\":\"Stout-Hearted\",\"description\":\"YourVALOURrollsareFavoured\"},\"livingStandard\":\"prosperous\",\"attributes\":{\"strength\":[5,4,5,4,5,6],\"heart\":[7,7,6,6,5,6],\"wits\":[2,3,3,4,4,2]},\"derivedStats\":{\"endurance\":20,\"hope\":8,\"parry\":12},\"skills\":{\"awe\":[\"none\",1],\"athletics\":[\"favored\",1],\"awareness\":[\"none\",0],\"hunting\":[\"none\",2],\"song\":[\"none\",1],\"craft\":[\"none\",1],\"enhearten\":[\"none\",2],\"travel\":[\"none\",1],\"insight\":[\"none\",2],\"healing\":[\"none\",0],\"courtesy\":[\"none\",2],\"battle\":[\"none\",2],\"persuade\":[\"none\",3],\"stealth\":[\"none\",0],\"scan\":[\"none\",1],\"explore\":[\"none\",1],\"riddle\":[\"none\",0],\"lore\":[\"none\",1]},\"combatProficiency\":{\"firstProficiency\":[\"bows\",\"swords\"],\"secondProficiency\":[\"bows\",\"swords\",\"axes\",\"spears\"]},\"distinctiveFeatures\":[\"Bold\",\"Eager\",\"Fair\",\"Fierce\",\"Generous\",\"Proud\",\"Tall\",\"Wilful\"]}"
+//JSON PATHS
+const bardingPath = "JSON/heroic-cultures/barding.json";
+const breeManPath = "JSON/heroic-cultures/breeMan.json";
+const dwarfPath = "JSON/heroic-cultures/dwarf.json";
+const elfPath = "JSON/heroic-cultures/elf.json";
+const hobbitPath = "JSON/heroic-cultures/hobbit.json";
+const rangerPath = "JSON/heroic-cultures/ranger.json";
+const captainPath = "JSON/callings/captain.json";
+const championPath = "JSON/callings/champion.json";
+const messengerPath = "JSON/callings/messenger.json";
+const scholarPath = "JSON/callings/scholar.json";
+const treasureHunterPath = "JSON/callings/treasureHunter.json";
+const wardenPath = "JSON/callings/warden.json";
+
+// INPUTS
+const nameInput = $("#charname");
+const ageInput = $("#charage");
+const cultureInput = $("#cultureSelection")
+const callingInput = $("#callingSelection")
+
+// OUTPUTS
+const nameText = $("#nameText");
+const ageText = $("#ageText");
+const cultureText = $("#cultureText");
+const blessingText = $("#blessingText");
+const flawText = $("#flawText");
+const shadowPathText = $("#shadowPathText");
+const callingText = $("#callingText");
+
+// Generate character when user presses button
+$("#genCharButton").click(() => {
+    resetCharSheet();
+    nameText.append(nameInput.val());
+    ageText.append(ageInput.val());
+    cultureText.append(cultureInput.val());
+    getCulturalInfo();
+    callingText.append(callingInput.val());
+    getCallingInfo();
+})
 
 
-// var culture = JSON.parse(request.responseText);
+// FUNCTIONS
+function getCallingInfo() {
+    switch (callingInput.val()) {
+        case "Captain":
+            $.getJSON(captainPath, (data) => {
+                shadowPathText.append(data.shadowPath);
+            });
+            break;
+        case "Champion":
+            $.getJSON(championPath, (data) => {
+                shadowPathText.append(data.shadowPath);
+            });
+            break;
+        case "Messenger":
+            $.getJSON(messengerPath, (data) => {
+                shadowPathText.append(data.shadowPath);
+            });
+            break;
+        case "Scholar":
+            $.getJSON(scholarPath, (data) => {
+                shadowPathText.append(data.shadowPath);
+            });
+            break;
+        case "Treasure Hunter":
+            $.getJSON(treasureHunterPath, (data) => {
+                shadowPathText.append(data.shadowPath);
+            });
+            break;
+        case "Warden":
+            $.getJSON(wardenPath, (data) => {
+                shadowPathText.append(data.shadowPath);
+            });
+            break;
+        default:
+            break;
+    }
+}
 
-$.getJSON("JSON/heroic-cultures/barding.json", (data) => {
+function getCulturalInfo() {
+    switch (cultureInput.val()) {
+        case "Barding":
+            $.getJSON(bardingPath, (data) => {
+                blessingText.append(data.blessing.blessingName);
+                flawText.append("None");
+            });
+            break;
+        case "Dwarf of Durin's Folk":
+            $.getJSON(dwarfPath, (data) => {
+                blessingText.append(data.blessing.blessingName);
+                flawText.append(data.flaw.flawName);
+            });
+            break;
+        case "Elf of Lindon":
+            $.getJSON(elfPath, (data) => {
+                blessingText.append(data.blessing.blessingName);
+                flawText.append(data.flaw.flawName);
+            });
+            break;
+        case "Hobbit of The Shire":
+            $.getJSON(hobbitPath, (data) => {
+                blessingText.append(data.blessing.blessingName);
+                flawText.append(data.flaw.flawName);
+            });
+            break;
+        case "Man of Bree":
+            $.getJSON(breeManPath, (data) => {
+                blessingText.append(data.blessing.blessingName);
+                flawText.append("None");
+            });
+            break;
+        case "Rangers of The North":
+            $.getJSON(rangerPath, (data) => {
+                blessingText.append(data.blessing.blessingName);
+                flawText.append(data.flaw.flawName);
+            });
+            break;
+        default:
+            break;
+    }
+}
 
-});
+function resetCharSheet() {
+    nameText.html("Name: ");
+    ageText.html("Age: ");
+    cultureText.html("Heroic Culture: ");
+    blessingText.html("Cultural Blessing: ");
+    flawText.html("Cultural Flaw: ");
+    callingText.html("Calling: ");
+    shadowPathText.html("Shadow Path: ")
+}
