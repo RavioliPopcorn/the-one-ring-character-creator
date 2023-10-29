@@ -532,10 +532,60 @@
         </div>
     </div>
     <div id="gearbox">
-        <label for="Attribute Selection">Weapon 1</label> <br>
-        <select id="attributeSelection">
-            <option value="att1">Str: 5, Heart: 7, Wits: 2</option>
-            <option value="att2">Str: 4, Heart: 7, Wits: 3</option>
+        <label for="Weapon Selection 1">Weapon 1</label> <br>
+        <select id="weapon1Selection">
+            <option value="bow">Bow</option>
+            <option value="greatbow">Great Bow</option>
+        </select>
+        <br>
+        <label for="Weapon Selection 2">Weapon 2</label> <br>
+        <select id="weapon2Selection">
+            <option value="shortsword">Short Sword</option>
+            <option value="sword">Sword</option>
+            <option value="longsword">Long Sword</option>
+        </select>
+        <br>
+        <label for="Armour Selection">Armour</label> <br>
+        <select id="armourselection">
+            <option value="leathershirt">Leather Shirt</option>
+            <option value="leathercorslet">Leather Corslet</option>
+            <option value="mailshirt">Mail-shirt</option>
+            <option value="mailcoat">Coat of Mail</option>
+        </select>
+        <br>
+        <label for="Helm Toggle">Use Helm?</label> <br>
+        <input type="checkbox" name="usehelm" id="usehelm">
+        <br>
+        <label for="Shield Selection">Shield</label> <br>
+        <select id="shieldselection">
+            <option value="buckler">Buckler</option>
+            <option value="shield">Shield</option>
+            <option value="greatshield">Great Shield</option>
+        </select>
+        <br>
+    </div>
+    <br>
+    <div id="rewardbox">
+        <label for="Reward Selection">Starting Reward</label> <br>
+        <select id="rewardSelection">
+            <option value="Close-fitting">Close-fitting</option>
+            <option value="Cunning Make">Cunning Make</option>
+            <option value="Fell">Fell</option>
+            <option value="Grievous">Grievous</option>
+            <option value="Keen">Keen</option>
+            <option value="Reinforced">Reinforced</option>
+        </select>
+        <br>
+    </div>
+    <div id="virtuebox">
+        <label for="Virtue Selection">Starting Virtue</label> <br>
+        <select id="virtueSelection">
+            <option value="Confidence">Confidence</option>
+            <option value="Dour-handed">Dour-handed</option>
+            <option value="Hardiness">Hardiness</option>
+            <option value="Mastery">Mastery</option>
+            <option value="Nimbleness">Nimbleness</option>
+            <option value="Prowess">Prowess</option>
         </select>
         <br>
     </div>
@@ -652,13 +702,13 @@
     <p id="swords-levelText">Swords: </p>
 
     <h2>War Gear</h2>
-    <ul id="war-gear"> 
+    <ul id="warGearText"> 
     </ul>
 
     <h2>Armour</h2>
-    <p>Armour: </p>
-    <p>Helm: </p>
-    <p>Shield: </p>
+    <p id="armourText">Armour: </p>
+    <p id="helmText">Helm: </p>
+    <p id="shieldText">Shield: </p>
 
     <h2>Rewards</h2>
     <p>Valour: 1</p>
