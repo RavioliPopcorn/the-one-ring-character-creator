@@ -2,9 +2,15 @@ p {
     margin: 0px;
 }
 
-.experienceChoice {
+.experiencechoice {
     display: inline-flex; 
     flex-direction: column; 
-    width: 20px; 
     text-align: center;
+}
+
+.experiencechoicecontainer {
+    display: grid; 
+    grid-template-columns: 100px auto;
+    justify-content: left;
+    align-items: center;
 }
