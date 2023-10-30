@@ -11,6 +11,11 @@ const messengerPath = "JSON/callings/messenger.json";
 const scholarPath = "JSON/callings/scholar.json";
 const treasureHunterPath = "JSON/callings/treasureHunter.json";
 const wardenPath = "JSON/callings/warden.json";
+const armourPath = "JSON/starting-gear/armour.json";
+const shieldsPath = "JSON/starting-gear/shields.json";
+const weaponsPath = "JSON/starting-gear/weapons.json";
+const rewardsPath = "JSON/starting-rewards.json";
+const virtuesPath = "JSON/starting-virtues.json";
 
 // INPUTS
 const nameInput = $("#charname");
@@ -59,6 +64,13 @@ const exploreFavoredInput = $("#explore-check");
 const riddleFavoredInput = $("#riddle-check");
 const loreFavoredInput = $("#lore-check");
 const favoredSkillSelection = $("#favoredSkillSelection");
+const weapon1Selection = $("#weapon1Selection");
+const weapon2Selection = $("#weapon2Selection");
+const armourSelection = $("#armourSelection");
+const shieldSelection = $("#shieldSelection");
+const rewardSelection = $("#rewardSelection");
+const virtueSelection = $("#virtueSelection");
+const helmToggle = $("#usehelm");
 
 // OUTPUTS
 const nameText = $("#nameText");
@@ -100,6 +112,12 @@ const hopeText = $("#hopeText");
 const witsRatingText = $("#witsRatingText");
 const witsTnText = $("#witsTnText");
 const parryText = $("#parryText");
+const warGearList = $("#warGearList");
+const armourText = $("#armourText");
+const helmText = $("#helmText");
+const shieldText = $("#shieldText");
+const rewardsList = $("#rewardsList");
+const virtuesList = $("#virtuesList");
 
 // Generate character when user presses button
 $("#genCharButton").click(() => {
@@ -115,6 +133,13 @@ $("#genCharButton").click(() => {
     getCallingInfo();
 
     getExperiences();
+    getWarGear();
+    getArmour();
+    getHelm();
+    getShield();
+
+    getStartingReward();
+    getStartingVirtue();
 })
 
 
@@ -255,6 +280,13 @@ function resetCharSheet() {
     swordsLevelText.html("Swords: ");
 
     resetSkillChecks();
+
+    warGearList.html("");
+    armourText.html("Armour: ");
+    helmText.html("Helm: ");
+    shieldText.html("Shield: ");
+    rewardsList.html("");
+    virtuesList.html("");
 }
 
 function resetSkillChecks() {
@@ -312,6 +344,65 @@ function getAttributes() {
         default:
             break;
     }
+}
+
+function getWarGear() {
+    $.getJSON(weaponsPath, (weapons) => {
+        let weapon1 = weapons.find((weapon) => weapon.name === weapon1Selection.val());
+        let weapon2 = weapons.find((weapon) => weapon.name === weapon2Selection.val());
+        warGearList.append("<li>"+ weapon1.name + 
+        "/DMG: " + weapon1.damage + 
+        "/INJURY: " + weapon1.injury + 
+        "/LOAD: " + weapon1.load + 
+        "/NOTES: " + weapon1.notes + "</li>");
+        warGearList.append("<li>"+ weapon2.name + 
+        "/DMG: " + weapon2.damage + 
+        "/INJURY: " + weapon2.injury + 
+        "/LOAD: " + weapon2.load + 
+        "/NOTES: " + weapon2.notes + "</li>");
+     }); 
+}
+
+function getArmour() {
+    $.getJSON(armourPath, (armours) => {
+        let armourChosen = armours.find((armour) => armour.name === armourSelection.val());
+        armourText.append(armourChosen.name + 
+        "/PROTECTION: " + armourChosen.protection + 
+        "/LOAD: " + armourChosen.load);
+     }); 
+}
+
+function getHelm() {
+    if (helmToggle[0].checked) {
+        helmText.append("Helm/PROTECTION: 1d/LOAD: 4"
+        );
+    }
+}
+
+function getShield() {
+    $.getJSON(shieldsPath, (shields) => {
+        let shieldChosen = shields.find((shield) => shield.name === shieldSelection.val());
+        shieldText.append(shieldChosen.name + 
+        "/PARRY: " + shieldChosen.parry + 
+        "/LOAD: " + shieldChosen.load);
+     }); 
+}
+
+function getStartingReward() {
+    $.getJSON(rewardsPath, (rewards) => {
+        let rewardChosen = rewards.find((reward) => reward.name === rewardSelection.val());
+        rewardsList.append("<li>"+ rewardChosen.name + 
+        "(" + rewardChosen.type + "): " + 
+        rewardChosen.description + "</li>");
+     }); 
+}
+
+function getStartingVirtue() {
+    $.getJSON(virtuesPath, (virtues) => {
+        let virtueChosen = virtues.find((virtue) => virtue.name === virtueSelection.val());
+        virtuesList.append("<li>"+ virtueChosen.name + ": " +
+        virtueChosen.description + "</li>");
+     }); 
 }
 
 function setFavoredSkill(skill) {
@@ -396,3 +487,4 @@ function findChosenExperience(radioArray) {
     }
     return 0;
 }
+
