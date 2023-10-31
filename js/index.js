@@ -118,6 +118,37 @@ const helmText = $("#helmText");
 const shieldText = $("#shieldText");
 const rewardsList = $("#rewardsList");
 const virtuesList = $("#virtuesList");
+const skillPointsText = $("#skillPointsText");
+
+// EXPERIENCE SYSTEM
+var skillPoints = 10;
+var lastRadio = null;
+const skillUpgradeCost = [1,2,3,5];
+const combatUpgradeCost = [2,4,6];
+var lastRadios = {
+    aweLastRadio: null, 
+    athleticsLastRadio: null,
+    awarenessLastRadio: null,
+    huntingLastRadio: null,
+    songLastRadio: null,
+    craftLastRadio: null,
+    enheartenLastRadio: null,
+    travelLastRadio: null,
+    insightLastRadio: null,
+    healingLastRadio: null,
+    courtesyLastRadio: null,
+    battleLastRadio: null,
+    persuadeLastRadio: null,
+    stealthLastRadio: null,
+    scanLastRadio: null,
+    exploreLastRadio: null,              
+    riddleLastRadio: null,
+    loreLastRadio: null,
+    bowsLastRadio: null,
+    swordsLastRadio: null,
+    axesLastRadio: null,
+    spearsLastRadio: null,  
+}
 
 // Generate character when user presses button
 $("#genCharButton").click(() => {
@@ -142,8 +173,217 @@ $("#genCharButton").click(() => {
     getStartingVirtue();
 })
 
+$("input[type=radio]").click((event) => {
+    // Get experience variables and radios
+    let experienceType = event.target.name;
+    let experienceValue = parseInt(event.target.value);
+    let experienceRadios = $(`input[name=${experienceType}]`);
+    var defaultRadio = null;
+    for (let i = 0; i < experienceRadios.length; i++) {
+        if(experienceRadios[i].defaultChecked === true) {
+            defaultRadio = experienceRadios[i];
+            break;
+        }
+    }
+
+    // get default radio and previously chosen radio
+    let lastRadio = getLastRadio(experienceType);
+    if (lastRadio===null) {
+        setLastRadio(experienceType, defaultRadio);
+        lastRadio = defaultRadio;
+    }    
+    let defaultExperience = parseInt(defaultRadio.value);
+    let lastExperience = parseInt(lastRadio.value);
+
+    // Redund or upgrade based on choice
+    if (experienceValue < defaultExperience) {
+        // if choice is less than default, enforce default
+        defaultRadio.click();
+    } else if (experienceValue < lastExperience) {
+        // if choice is less than previous choice, but not less than default, refund
+        refundPoints(defaultExperience, lastExperience, event);
+        upgradeExperience(defaultExperience, experienceValue, event);
+        skillPointsText.html("Skill Points: " + skillPoints);
+        
+    } else if (experienceValue > lastExperience) {
+        // Use points to upgrade skill rank
+        upgradeExperience(lastExperience, experienceValue, event)
+        skillPointsText.html("Skill Points: " + skillPoints);
+    }
+})
+
+
 
 // FUNCTIONS
+
+function upgradeExperience(lowRank, highRank, event) {
+    let totalCost = 0;
+    upgradeSteps = highRank - lowRank;
+    
+    if (event.target.name === "bows-experience" || event.target.name === "swords-experience" ||
+    event.target.name === "axes-experience" || event.target.name === "spears-experience") {
+        for (let index = 0; index < upgradeSteps; index++) {
+            totalCost += combatUpgradeCost[lowRank+index]
+        }
+    } else {
+        for (let index = 0; index < upgradeSteps; index++) {
+            totalCost += skillUpgradeCost[lowRank+index]
+        }
+    }
+    
+    let lastRadio = getLastRadio(event.target.name)  
+
+    if (totalCost > skillPoints) {
+        alert("Not enought skill points!");
+        refundPoints(lowRank, lastRadio.value, event);
+        lastRadio.click();
+    } else {
+        skillPoints -= totalCost;
+        setLastRadio(event.target.name, event.target);
+    }
+}
+
+function refundPoints(defaultRank, rankToRefund, event) {
+    let totalRefund = 0;
+    upgradeSteps = rankToRefund - defaultRank;
+    if (event.target.name === "bows-experience" || event.target.name === "swords-experience" ||
+    event.target.name === "axes-experience" || event.target.name === "spears-experience") {
+        for (let index = 0; index < upgradeSteps; index++) {
+            totalRefund += combatUpgradeCost[defaultRank+index]
+        }
+    } else {
+        for (let index = 0; index < upgradeSteps; index++) {
+            totalRefund += skillUpgradeCost[defaultRank+index]
+        }
+    }
+    
+    skillPoints += totalRefund;
+}
+
+function getLastRadio(experienceType) {
+    switch (experienceType) {
+        case "awe-experience":
+            return lastRadios.aweLastRadio;
+        case "athletics-experience":
+            return lastRadios.athleticsLastRadio;
+        case "awareness-experience":
+            return lastRadios.awarenessLastRadio;
+        case "hunting-experience":
+            return lastRadios.huntingLastRadio;
+        case "song-experience":
+            return lastRadios.songLastRadio;
+        case "craft-experience":
+            return lastRadios.craftLastRadio;
+        case "enhearten-experience":
+            return lastRadios.enheartenLastRadio;
+        case "travel-experience":
+            return lastRadios.travelLastRadio;
+        case "insight-experience":
+            return lastRadios.insightLastRadio;
+        case "healing-experience":
+            return lastRadios.healingLastRadio;
+        case "courtesy-experience":
+            return lastRadios.courtesyLastRadio;
+        case "battle-experience":
+            return lastRadios.battleLastRadio;
+        case "persuade-experience":
+            return lastRadios.persuadeLastRadio;
+        case "stealth-experience":
+            return lastRadios.stealthLastRadio;
+        case "scan-experience":
+            return lastRadios.scanLastRadio;
+        case "explore-experience":
+            return lastRadios.exploreLastRadio;
+        case "riddle-experience":
+            return lastRadios.riddleLastRadio;
+        case "lore-experience":
+            return lastRadios.loreLastRadio;
+        case "bows-experience":
+            return lastRadios.bowsLastRadio;
+        case "swords-experience":
+            return lastRadios.swordsLastRadio;
+        case "axes-experience":
+            return lastRadios.axesLastRadio;
+        case "spears-experience":
+            return lastRadios.spearsLastRadio;
+        default:
+            return null;
+    }
+}
+
+function setLastRadio(experienceType, newLastRadio) {
+    switch (experienceType) {
+        case "awe-experience":
+            lastRadios.aweLastRadio = newLastRadio;
+            break;
+        case "athletics-experience":
+            lastRadios.athleticsLastRadio = newLastRadio;
+            break;
+        case "awareness-experience":
+            lastRadios.awarenessLastRadio = newLastRadio;
+            break;
+        case "hunting-experience":
+            lastRadios.huntingLastRadio = newLastRadio;
+            break;
+        case "song-experience":
+            lastRadios.songLastRadio = newLastRadio;
+            break;
+        case "craft-experience":
+            lastRadios.craftLastRadio = newLastRadio;
+            break;
+        case "enhearten-experience":
+            lastRadios.enheartenLastRadio = newLastRadio;
+            break;
+        case "travel-experience":
+            lastRadios.travelLastRadio = newLastRadio;
+            break;
+        case "insight-experience":
+            lastRadios.insightLastRadio = newLastRadio;
+            break;
+        case "healing-experience":
+            lastRadios.healingLastRadio = newLastRadio;
+            break;
+        case "courtesy-experience":
+            lastRadios.courtesyLastRadio = newLastRadio;
+            break;
+        case "battle-experience":
+            lastRadios.battleLastRadio = newLastRadio;
+            break;
+        case "persuade-experience":
+            lastRadios.persuadeLastRadio = newLastRadio;
+            break;
+        case "stealth-experience":
+            lastRadios.stealthLastRadio = newLastRadio;
+            break;
+        case "scan-experience":
+            lastRadios.scanLastRadio = newLastRadio;
+            break;
+        case "explore-experience":
+            lastRadios.exploreLastRadio = newLastRadio;
+            break;
+        case "riddle-experience":
+            lastRadios.riddleLastRadio = newLastRadio;
+            break;
+        case "lore-experience":
+            lastRadios.loreLastRadio = newLastRadio;
+            break;
+        case "bows-experience":
+            lastRadios.bowsLastRadio = newLastRadio;
+            break;
+        case "swords-experience":
+            lastRadios.swordsLastRadio = newLastRadio;
+            break;
+        case "axes-experience":
+            lastRadios.axesLastRadio = newLastRadio;
+            break;
+        case "spears-experience":
+            lastRadios.spearsLastRadio = newLastRadio;
+            break;
+        default:
+            break;
+    }
+}
+
 function getCallingInfo() {
     switch (callingInput.val()) {
         case "Captain":
@@ -287,6 +527,8 @@ function resetCharSheet() {
     shieldText.html("Shield: ");
     rewardsList.html("");
     virtuesList.html("");
+
+    skillPoints = 10;
 }
 
 function resetSkillChecks() {
@@ -405,6 +647,13 @@ function getStartingVirtue() {
      }); 
 }
 
+function getCultureExperience(skill){
+    
+    
+}
+
+
+
 function setFavoredSkill(skill) {
     switch (skill) {
         case "awe":
@@ -482,9 +731,11 @@ function setAttributes(data) {
 function findChosenExperience(radioArray) {
     for (let i = 0; i < radioArray.length; i++) {
         if(radioArray[i].checked) {
-            return i+1;
+            return i;
         }
     }
     return 0;
 }
+
+
 

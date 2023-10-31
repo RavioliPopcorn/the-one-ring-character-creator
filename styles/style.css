@@ -14,3 +14,13 @@ p {
     justify-content: left;
     align-items: center;
 }
+
+#skillPointsText {
+    font-weight: bold;
+}
+
+#upgradeCostLegend {
+    text-align: center;
+    align-self: center;
+    padding: 10px;
+}
