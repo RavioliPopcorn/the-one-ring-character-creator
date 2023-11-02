@@ -80,6 +80,8 @@ var axesBox = $("#axesBox");
 var bowsBox = $("#bowsBox");
 var swordsBox = $("#swordsBox");
 var spearsBox = $("#spearsBox");
+var distinctiveFeature1 = $("#distinctiveFeature1");
+var distinctiveFeature2 = $("#distinctiveFeature2");
 
 
 // OUTPUTS
@@ -178,6 +180,8 @@ $("#genCharButton").click(() => {
 
     cultureText.append(cultureInput.val());
     getCulturalInfo();
+    distinctiveFeatureText.append(`${distinctiveFeature1.val()}, `);
+    distinctiveFeatureText.append(`${distinctiveFeature2.val()}, `);
     getAttributes();
 
     callingText.append(callingInput.val());
@@ -780,12 +784,16 @@ function colorDefaultExperiences() {
 
 var previousWeapon1;
 var previousWeapon2;
+var previousFeature1;
+var previousFeature2;
 function loadCultureBox(culture) {
     $("#culturebox").load(`public/heroic-cultures/${culture}.html`, () => {
         attributeSelection = $("#attributeSelection");
         favoredSkillSelection = $("#favoredSkillSelection");
         proficiencySelection1 = $("#proficiencySelection1");
         proficiencySelection2 = $("#proficiencySelection2");
+        distinctiveFeature1 = $("#distinctiveFeature1");
+        distinctiveFeature2 = $("#distinctiveFeature2");    
 
         proficiencySelection1.focus((event) => {
             previousWeapon1 = event.target.value;
@@ -844,7 +852,33 @@ function loadCultureBox(culture) {
             previousWeapon2 = event.target.value;
             colorDefaultExperiences();
         })
-        
+
+        distinctiveFeature1.focus((event) => {
+            previousFeature1 = event.target.value;
+        }).click((event) => {
+            previousFeature1 = event.target.value
+        }).change((event) => {
+
+            let chosenFeature = event.target.value;
+            let possibleFeatures = [
+                event.target.children[0].value,
+                event.target.children[1].value,
+                event.target.children[2].value,
+                event.target.children[3].value,
+                event.target.children[4].value,
+                event.target.children[5].value,
+                event.target.children[6].value,
+                event.target.children[7].value,
+            ];
+            $(`#distinctiveFeature2 option[value=${chosenFeature}]`).remove();
+            let index = possibleFeatures.indexOf(`${chosenFeature}`);
+            if (index > -1) { 
+                possibleFeatures.splice(index, 1); 
+            }
+            distinctiveFeature2.append("beforeEnd", 
+            `<option value="${previousFeature1}">${previousFeature1}</option>`);                  
+        });
+    
     });
 }
 
