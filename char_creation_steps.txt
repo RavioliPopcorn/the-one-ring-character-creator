@@ -16,3 +16,9 @@ THis determines
 
 7. CHOOSE STARTING REWARD AND VIRTUE
 - Record VALOUR and WISDOM at 1
+
+
+NEXT TASKS:
+- Make HTML for all cultures and their experiences
+- Update weapon experience based on chosen weapon
+- update weapon choice based on weapon experience

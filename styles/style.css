@@ -24,3 +24,7 @@ p {
     align-self: center;
     padding: 10px;
 }
+
+.default-radio {
+    color: red;
+}

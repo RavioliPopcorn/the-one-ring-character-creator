@@ -22,29 +22,30 @@ const nameInput = $("#charname");
 const ageInput = $("#charage");
 const cultureInput = $("#cultureSelection");
 const callingInput = $("#callingSelection");
-const aweExperienceInputs = $("input[id^=awe-choice]");
-const athleticsExperienceInputs = $("input[id^=athletics-choice]");
-const awarenessExperienceInputs = $("input[id^=awareness-choice]");
-const huntingExperienceInputs = $("input[id^=hunting-choice]");
-const songExperienceInputs = $("input[id^=song-choice]");
-const craftExperienceInputs = $("input[id^=craft-choice]");
-const enheartenExperienceInputs = $("input[id^=enhearten-choice]");
-const travelExperienceInputs = $("input[id^=travel-choice]");
-const insightExperienceInputs = $("input[id^=insight-choice]");
-const healingExperienceInputs = $("input[id^=healing-choice]");
-const courtesyExperienceInputs = $("input[id^=courtesy-choice]");
-const battleExperienceInputs = $("input[id^=battle-choice]");
-const persuadeExperienceInputs = $("input[id^=persuade-choice]");
-const stealthExperienceInputs = $("input[id^=stealth-choice]");
-const scanExperienceInputs = $("input[id^=scan-choice]");
-const exploreExperienceInputs = $("input[id^=explore-choice]");
-const riddleExperienceInputs = $("input[id^=riddle-choice]");
-const loreExperienceInputs = $("input[id^=lore-choice]");
-const bowsExperienceInputs = $("input[id^=bows-choice]");
-const swordsExperienceInputs = $("input[id^=swords-choice]");
-const axesExperienceInputs = $("input[id^=axes-choice]");
-const spearsExperienceInputs = $("input[id^=spears-choice]");
-const attributeInput = $("#attributeSelection");
+var aweExperienceInputs = $("input[id^=awe-choice]");
+var athleticsExperienceInputs = $("input[id^=athletics-choice]");
+var awarenessExperienceInputs = $("input[id^=awareness-choice]");
+var huntingExperienceInputs = $("input[id^=hunting-choice]");
+var songExperienceInputs = $("input[id^=song-choice]");
+var craftExperienceInputs = $("input[id^=craft-choice]");
+var enheartenExperienceInputs = $("input[id^=enhearten-choice]");
+var travelExperienceInputs = $("input[id^=travel-choice]");
+var insightExperienceInputs = $("input[id^=insight-choice]");
+var healingExperienceInputs = $("input[id^=healing-choice]");
+var courtesyExperienceInputs = $("input[id^=courtesy-choice]");
+var battleExperienceInputs = $("input[id^=battle-choice]");
+var persuadeExperienceInputs = $("input[id^=persuade-choice]");
+var stealthExperienceInputs = $("input[id^=stealth-choice]");
+var scanExperienceInputs = $("input[id^=scan-choice]");
+var exploreExperienceInputs = $("input[id^=explore-choice]");
+var riddleExperienceInputs = $("input[id^=riddle-choice]");
+var loreExperienceInputs = $("input[id^=lore-choice]");
+var bowsExperienceInputs = $("input[id^=bows-choice]");
+var swordsExperienceInputs = $("input[id^=swords-choice]");
+var axesExperienceInputs = $("input[id^=axes-choice]");
+var spearsExperienceInputs = $("input[id^=spears-choice]");
+var experienceInputs = $("input[type=radio]");
+var attributeSelection = $("#attributeSelection");
 const aweFavoredInput = $("#awe-check");
 const athleticsFavoredInput = $("#athletics-check");
 const awarenessFavoredInput = $("#awareness-check");
@@ -63,14 +64,23 @@ const scanFavoredInput = $("#scan-check");
 const exploreFavoredInput = $("#explore-check");
 const riddleFavoredInput = $("#riddle-check");
 const loreFavoredInput = $("#lore-check");
-const favoredSkillSelection = $("#favoredSkillSelection");
-const weapon1Selection = $("#weapon1Selection");
-const weapon2Selection = $("#weapon2Selection");
-const armourSelection = $("#armourSelection");
-const shieldSelection = $("#shieldSelection");
+var favoredSkillSelection = $("#favoredSkillSelection");
+var axesSelection = $("#axesSelection");
+var bowsSelection = $("#bowsSelection");
+var swordsSelection = $("#swordsSelection");
+var spearsSelection = $("#spearsSelection");
+var armourSelection = $("#armourSelection");
+var shieldSelection = $("#shieldSelection");
+var helmToggle = $("#usehelm");
 const rewardSelection = $("#rewardSelection");
 const virtueSelection = $("#virtueSelection");
-const helmToggle = $("#usehelm");
+var proficiencySelection1 = $("proficiencySelection1");
+var proficiencySelection2 = $("proficiencySelection2");
+var axesBox = $("#axesBox");
+var bowsBox = $("#bowsBox");
+var swordsBox = $("#swordsBox");
+var spearsBox = $("#spearsBox");
+
 
 // OUTPUTS
 const nameText = $("#nameText");
@@ -118,7 +128,7 @@ const helmText = $("#helmText");
 const shieldText = $("#shieldText");
 const rewardsList = $("#rewardsList");
 const virtuesList = $("#virtuesList");
-const skillPointsText = $("#skillPointsText");
+var skillPointsText = $("#skillPointsText");
 
 // EXPERIENCE SYSTEM
 var skillPoints = 10;
@@ -150,6 +160,14 @@ var lastRadios = {
     spearsLastRadio: null,  
 }
 
+// INITITALIZATION
+$(function() {
+    let culture = "barding";
+    loadCultureBox(culture);
+    loadExperienceBox(culture);
+    loadGearBox();
+ });
+
 // Generate character when user presses button
 $("#genCharButton").click(() => {
     resetCharSheet();
@@ -173,46 +191,14 @@ $("#genCharButton").click(() => {
     getStartingVirtue();
 })
 
-$("input[type=radio]").click((event) => {
-    // Get experience variables and radios
-    let experienceType = event.target.name;
-    let experienceValue = parseInt(event.target.value);
-    let experienceRadios = $(`input[name=${experienceType}]`);
-    var defaultRadio = null;
-    for (let i = 0; i < experienceRadios.length; i++) {
-        if(experienceRadios[i].defaultChecked === true) {
-            defaultRadio = experienceRadios[i];
-            break;
-        }
-    }
 
-    // get default radio and previously chosen radio
-    let lastRadio = getLastRadio(experienceType);
-    if (lastRadio===null) {
-        setLastRadio(experienceType, defaultRadio);
-        lastRadio = defaultRadio;
-    }    
-    let defaultExperience = parseInt(defaultRadio.value);
-    let lastExperience = parseInt(lastRadio.value);
-
-    // Redund or upgrade based on choice
-    if (experienceValue < defaultExperience) {
-        // if choice is less than default, enforce default
-        defaultRadio.click();
-    } else if (experienceValue < lastExperience) {
-        // if choice is less than previous choice, but not less than default, refund
-        refundPoints(defaultExperience, lastExperience, event);
-        upgradeExperience(defaultExperience, experienceValue, event);
-        skillPointsText.html("Skill Points: " + skillPoints);
-        
-    } else if (experienceValue > lastExperience) {
-        // Use points to upgrade skill rank
-        upgradeExperience(lastExperience, experienceValue, event)
-        skillPointsText.html("Skill Points: " + skillPoints);
-    }
+// Load new culture inputs when form changes
+cultureInput.change(() => {
+    let culture = getCulture();
+    loadCultureBox(culture);
+    loadExperienceBox(culture);
+    loadGearBox();
 })
-
-
 
 // FUNCTIONS
 
@@ -481,7 +467,7 @@ function resetCharSheet() {
     ageText.html("Age: ");
     cultureText.html("Heroic Culture: ");
     blessingText.html("Cultural Blessing: ");
-    flawText.html("Cultural Flaw: ");
+    flawText.html("Flaws: ");
     callingText.html("Calling: ");
     shadowPathText.html("Shadow Path: ")
     distinctiveFeatureText.html("Distinctive Features: ")
@@ -527,8 +513,6 @@ function resetCharSheet() {
     shieldText.html("Shield: ");
     rewardsList.html("");
     virtuesList.html("");
-
-    skillPoints = 10;
 }
 
 function resetSkillChecks() {
@@ -588,20 +572,60 @@ function getAttributes() {
     }
 }
 
+function getCulture() {
+    switch (cultureInput.val()) {
+        case "Barding":
+            return "barding";
+        case "Dwarf of Durin's Folk":
+            return "dwarf";
+        case "Elf of Lindon":
+            return "elf";
+        case "Hobbit of The Shire":
+            return "hobbit";
+        case "Man of Bree":
+            return "breeMan";
+        case "Rangers of The North":
+            return "ranger";
+        default:
+            break;
+    }
+}
+
 function getWarGear() {
     $.getJSON(weaponsPath, (weapons) => {
-        let weapon1 = weapons.find((weapon) => weapon.name === weapon1Selection.val());
-        let weapon2 = weapons.find((weapon) => weapon.name === weapon2Selection.val());
-        warGearList.append("<li>"+ weapon1.name + 
-        "/DMG: " + weapon1.damage + 
-        "/INJURY: " + weapon1.injury + 
-        "/LOAD: " + weapon1.load + 
-        "/NOTES: " + weapon1.notes + "</li>");
-        warGearList.append("<li>"+ weapon2.name + 
-        "/DMG: " + weapon2.damage + 
-        "/INJURY: " + weapon2.injury + 
-        "/LOAD: " + weapon2.load + 
-        "/NOTES: " + weapon2.notes + "</li>");
+        let axe = weapons.find((axe) => axe.name === axesSelection.val());
+        let bow = weapons.find((bow) => bow.name === bowsSelection.val());
+        let sword = weapons.find((sword) => sword.name === swordsSelection.val());
+        let spear = weapons.find((spears) => spears.name === spearsSelection.val());
+        if (axe != null) {
+            warGearList.append("<li>"+ axe.name + 
+            "/DMG: " + axe.damage + 
+            "/INJURY: " + axe.injury + 
+            "/LOAD: " + axe.load + 
+            "/NOTES: " + axe.notes + "</li>");
+        }
+        if (bow != null) {
+            warGearList.append("<li>"+ bow.name + 
+            "/DMG: " + bow.damage + 
+            "/INJURY: " + bow.injury + 
+            "/LOAD: " + bow.load + 
+            "/NOTES: " + bow.notes + "</li>");
+        }
+        if (sword != null) {
+            warGearList.append("<li>"+ sword.name + 
+            "/DMG: " + sword.damage + 
+            "/INJURY: " + sword.injury + 
+            "/LOAD: " + sword.load + 
+            "/NOTES: " + sword.notes + "</li>");
+        }
+        if (spear != null) {
+            warGearList.append("<li>"+ spear.name + 
+            "/DMG: " + spear.damage + 
+            "/INJURY: " + spear.injury + 
+            "/LOAD: " + spear.load + 
+            "/NOTES: " + spear.notes + "</li>");
+        }
+
      }); 
 }
 
@@ -646,12 +670,6 @@ function getStartingVirtue() {
         virtueChosen.description + "</li>");
      }); 
 }
-
-function getCultureExperience(skill){
-    
-    
-}
-
 
 
 function setFavoredSkill(skill) {
@@ -716,7 +734,7 @@ function setFavoredSkill(skill) {
 }
 
 function setAttributes(data) {
-    let chosenSetIndex = parseInt(attributeInput.val().substring(3))-1;
+    let chosenSetIndex = parseInt(attributeSelection.val().substring(3))-1;
     strengthRatingText.append(data.attributes.strength[chosenSetIndex]);
     strengthTnText.append(20-data.attributes.strength[chosenSetIndex]); 
     enduranceText.append(data.derivedStats.endurance + data.attributes.strength[chosenSetIndex]);
@@ -737,5 +755,294 @@ function findChosenExperience(radioArray) {
     return 0;
 }
 
+function findDefaultExperience(radioArray) {
+    for (let i = 0; i < radioArray.length; i++) {
+        if(radioArray[i].defaultChecked) {
+            return i;
+        }
+    }
+    return 0;
+}
 
 
+function colorDefaultExperiences() {
+    for (let index = 0; index < experienceInputs.length; index++) {
+        if (experienceInputs[index].defaultChecked) {
+            experienceInputs[index].previousElementSibling.classList.add("default-radio");
+        }
+        else{
+            experienceInputs[index].previousElementSibling.classList.remove("default-radio");
+        }   
+    }
+}
+
+var previousWeapon1;
+var previousWeapon2;
+function loadCultureBox(culture) {
+    $("#culturebox").load(`public/heroic-cultures/${culture}.html`, () => {
+        attributeSelection = $("#attributeSelection");
+        favoredSkillSelection = $("#favoredSkillSelection");
+        proficiencySelection1 = $("#proficiencySelection1");
+        proficiencySelection2 = $("#proficiencySelection2");
+
+        proficiencySelection1.focus((event) => {
+            previousWeapon1 = event.target.value;
+        }).click((event) => {
+            previousWeapon1 = event.target.value
+        }).change((event) => {
+            // Deal with changing proficiency (Change default weapon rank)
+            setAllRadiosDefault();
+            let chosenProficiency = event.target.value;
+            let possibleProficiencies = [
+                event.target.children[0].value,
+                event.target.children[1].value
+            ];
+            $(`#proficiencySelection2 option[value=${chosenProficiency}]`).remove();
+            let index = possibleProficiencies.indexOf(`${chosenProficiency}`);
+            if (index > -1) { 
+                possibleProficiencies.splice(index, 1); 
+            }
+            proficiencySelection2.append("beforeEnd", 
+            `<option value="${possibleProficiencies[0]}">${possibleProficiencies[0][0].toUpperCase()+possibleProficiencies[0].slice(1)}</option>`);                  
+            
+            let weapon1ProficiencyInputs = getWeaponExperienceInputs(chosenProficiency);
+            let previousWeaponProficiencyInputs = getWeaponExperienceInputs(previousWeapon1);
+            weapon1ProficiencyInputs[findChosenExperience(weapon1ProficiencyInputs)].removeAttribute("checked");
+            previousWeaponProficiencyInputs[findChosenExperience(previousWeaponProficiencyInputs)].removeAttribute("checked");
+            weapon1ProficiencyInputs[2].setAttribute("checked","");
+            previousWeaponProficiencyInputs[0].setAttribute("checked","");
+            weapon1ProficiencyInputs[0].click();
+            previousWeaponProficiencyInputs[0].click();
+            previousWeapon1 = event.target.value;
+            
+            proficiencySelection2.click()
+            let weapon2ProficiencyInputs = getWeaponExperienceInputs(previousWeapon2);
+            weapon2ProficiencyInputs[findChosenExperience(weapon2ProficiencyInputs)].removeAttribute("checked");
+            weapon2ProficiencyInputs[1].setAttribute("checked","");
+            weapon2ProficiencyInputs[1].click();           
+            colorDefaultExperiences();
+        })
+        
+        proficiencySelection2.focus((event) => {
+            previousWeapon2 = event.target.value;
+        }).click((event) => {
+            previousWeapon2 = event.target.value;
+        }).change((event) => {
+            // Deal with changing proficiency (Change default weapon rank)
+            setAllRadiosDefault();
+            let chosenProficiency = event.target.value;
+            let weapon2ProficiencyInputs = getWeaponExperienceInputs(chosenProficiency);
+            let previousWeaponProficiencyInputs = getWeaponExperienceInputs(previousWeapon2);
+            previousWeaponProficiencyInputs[findChosenExperience(previousWeaponProficiencyInputs)].removeAttribute("checked");
+            weapon2ProficiencyInputs[findChosenExperience(weapon2ProficiencyInputs)].removeAttribute("checked");
+            weapon2ProficiencyInputs[1].setAttribute("checked","");
+            previousWeaponProficiencyInputs[0].setAttribute("checked","");
+            weapon2ProficiencyInputs[0].click();
+            previousWeaponProficiencyInputs[0].click();
+            previousWeapon2 = event.target.value;
+            colorDefaultExperiences();
+        }) 
+    });
+}
+
+function loadExperienceBox(culture) {
+    $("#experiencebox").load(`public/culture-experiences/${culture}-experience.html`, () => {
+        skillPointsText = $("#skillPointsText");;
+        aweExperienceInputs = $("input[id^=awe-choice]");
+        athleticsExperienceInputs = $("input[id^=athletics-choice]");
+        awarenessExperienceInputs = $("input[id^=awareness-choice]");
+        huntingExperienceInputs = $("input[id^=hunting-choice]");
+        songExperienceInputs = $("input[id^=song-choice]");
+        craftExperienceInputs = $("input[id^=craft-choice]");
+        enheartenExperienceInputs = $("input[id^=enhearten-choice]");
+        travelExperienceInputs = $("input[id^=travel-choice]");
+        insightExperienceInputs = $("input[id^=insight-choice]");
+        healingExperienceInputs = $("input[id^=healing-choice]");
+        courtesyExperienceInputs = $("input[id^=courtesy-choice]");
+        battleExperienceInputs = $("input[id^=battle-choice]");
+        persuadeExperienceInputs = $("input[id^=persuade-choice]");
+        stealthExperienceInputs = $("input[id^=stealth-choice]");
+        scanExperienceInputs = $("input[id^=scan-choice]");
+        exploreExperienceInputs = $("input[id^=explore-choice]");
+        riddleExperienceInputs = $("input[id^=riddle-choice]");
+        loreExperienceInputs = $("input[id^=lore-choice]");
+        bowsExperienceInputs = $("input[id^=bows-choice]");
+        swordsExperienceInputs = $("input[id^=swords-choice]");
+        axesExperienceInputs = $("input[id^=axes-choice]");
+        spearsExperienceInputs = $("input[id^=spears-choice]");
+        experienceInputs = $("input[type=radio]");
+        lastRadios = {
+            aweLastRadio: null, 
+            athleticsLastRadio: null,
+            awarenessLastRadio: null,
+            huntingLastRadio: null,
+            songLastRadio: null,
+            craftLastRadio: null,
+            enheartenLastRadio: null,
+            travelLastRadio: null,
+            insightLastRadio: null,
+            healingLastRadio: null,
+            courtesyLastRadio: null,
+            battleLastRadio: null,
+            persuadeLastRadio: null,
+            stealthLastRadio: null,
+            scanLastRadio: null,
+            exploreLastRadio: null,              
+            riddleLastRadio: null,
+            loreLastRadio: null,
+            bowsLastRadio: null,
+            swordsLastRadio: null,
+            axesLastRadio: null,
+            spearsLastRadio: null,  
+        }
+        experienceInputs.click((event) => {
+            // Get experience variables and radios
+            let experienceType = event.target.name;
+            let experienceValue = parseInt(event.target.value);
+            let experienceRadios = $(`input[name=${experienceType}]`);
+            var defaultRadio = null;
+            for (let i = 0; i < experienceRadios.length; i++) {
+                if(experienceRadios[i].defaultChecked === true) {
+                    defaultRadio = experienceRadios[i];
+                    break;
+                }
+            }
+        
+            // get default radio and previously chosen radio
+            let lastRadio = getLastRadio(experienceType);
+            if (lastRadio===null) {
+                setLastRadio(experienceType, defaultRadio);
+                lastRadio = defaultRadio;
+            }    
+            let defaultExperience = parseInt(defaultRadio.value);
+            let lastExperience = parseInt(lastRadio.value);
+        
+            // Redund or upgrade based on choice
+            if (experienceValue < defaultExperience) {
+                // if choice is less than default, enforce default
+                defaultRadio.click();
+            } else if (experienceValue < lastExperience) {
+                // if choice is less than previous choice, but not less than default, refund
+                refundPoints(defaultExperience, lastExperience, event);
+                upgradeExperience(defaultExperience, experienceValue, event);
+                skillPointsText.html("Skill Points: " + skillPoints);
+                
+            } else if (experienceValue > lastExperience) {
+                // Use points to upgrade skill rank
+                upgradeExperience(lastExperience, experienceValue, event)
+                skillPointsText.html("Skill Points: " + skillPoints);
+            }
+
+            // Handle adding new weapon selections
+            $("#gearbox").load("public/gear.html", () => {
+                axesBox = $("#axesBox");
+                bowsBox = $("#bowsBox");
+                swordsBox = $("#swordsBox");
+                spearsBox = $("#spearsBox");
+                armourSelection = $("#armourSelection");
+                shieldSelection = $("#shieldSelection");
+                helmToggle = $("#usehelm");
+                if (bowsExperienceInputs[0].checked) {
+                    bowsBox[0].remove();
+                }
+                if (axesExperienceInputs[0].checked) {
+                    axesBox[0].remove();
+                }
+                if (spearsExperienceInputs[0].checked) {
+                    spearsBox[0].remove();
+                }
+                if (swordsExperienceInputs[0].checked) {
+                    swordsBox[0].remove();
+                }
+                axesSelection = $("#axesSelection");
+                bowsSelection = $("#bowsSelection");
+                swordsSelection = $("#swordsSelection");
+                spearsSelection = $("#spearsSelection");
+            });
+            
+        })
+        colorDefaultExperiences();
+        experienceInputs[0].click();
+    });
+}
+
+function loadGearBox() {
+    $("#gearbox").load("public/gear.html", () => {
+        axesSelection = $("#axesSelection");
+        bowsSelection = $("#bowsSelection");
+        swordsSelection = $("#swordsSelection");
+        spearsSelection = $("#spearsSelection");
+        axesBox = $("#axesBox");
+        bowsBox = $("#bowsBox");
+        swordsBox = $("#swordsBox");
+        spearsBox = $("#spearsBox");
+        armourSelection = $("#armourSelection");
+        shieldSelection = $("#shieldSelection");
+        helmToggle = $("#usehelm");
+    });
+}
+
+function getWeaponExperienceInputs(experienceType) {
+    switch (experienceType) {
+        case "axes":
+            return axesExperienceInputs;
+        case "bows":
+            return bowsExperienceInputs;
+        case "swords":
+            return swordsExperienceInputs;
+        case "spears":
+            return spearsExperienceInputs;
+        default:
+            break;
+    }
+}
+
+function setAllRadiosDefault() {
+    aweExperienceInputs[0].click();
+    athleticsExperienceInputs[0].click();
+    awarenessExperienceInputs[0].click();
+    huntingExperienceInputs[0].click();
+    songExperienceInputs[0].click();
+    craftExperienceInputs[0].click();
+    enheartenExperienceInputs[0].click();
+    travelExperienceInputs[0].click();
+    insightExperienceInputs[0].click();
+    healingExperienceInputs[0].click();
+    courtesyExperienceInputs[0].click();
+    battleExperienceInputs[0].click();
+    persuadeExperienceInputs[0].click();
+    stealthExperienceInputs[0].click();
+    scanExperienceInputs[0].click();
+    exploreExperienceInputs[0].click();
+    riddleExperienceInputs[0].click();
+    loreExperienceInputs[0].click();
+    bowsExperienceInputs[0].click();
+    swordsExperienceInputs[0].click();
+    axesExperienceInputs[0].click();
+    spearsExperienceInputs[0].click();
+    experienceInputs[0].click();  
+    lastRadios = {
+        aweLastRadio: null, 
+        athleticsLastRadio: null,
+        awarenessLastRadio: null,
+        huntingLastRadio: null,
+        songLastRadio: null,
+        craftLastRadio: null,
+        enheartenLastRadio: null,
+        travelLastRadio: null,
+        insightLastRadio: null,
+        healingLastRadio: null,
+        courtesyLastRadio: null,
+        battleLastRadio: null,
+        persuadeLastRadio: null,
+        stealthLastRadio: null,
+        scanLastRadio: null,
+        exploreLastRadio: null,              
+        riddleLastRadio: null,
+        loreLastRadio: null,
+        bowsLastRadio: null,
+        swordsLastRadio: null,
+        axesLastRadio: null,
+        spearsLastRadio: null,  
+    }
+}
