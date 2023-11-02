@@ -19,6 +19,6 @@ THis determines
 
 
 NEXT TASKS:
-- Make HTML for all cultures and their experiences
-- Update weapon experience based on chosen weapon
-- update weapon choice based on weapon experience
+- Make it so that user choices are saved into a character object,
+this will make some values easier to debug and modify 
+- Remove labels and just have them as plain text. I'm not using em right.

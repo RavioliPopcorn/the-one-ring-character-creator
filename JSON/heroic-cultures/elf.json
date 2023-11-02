@@ -44,5 +44,6 @@
         "firstProficiency": ["bows", "spears"],
         "secondProficiency": ["bows", "swords", "axes", "spears"]
     },
-    "distinctiveFeatures": ["Fair", "Keen-eyed", "Lordly", "Merry", "Patient", "Subtle", "Swift", "Wary"]
+    "distinctiveFeatures": ["Fair", "Keen-eyed", "Lordly", "Merry", 
+    "Patient", "Subtle", "Swift", "Wary"]
 }
