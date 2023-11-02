@@ -159,13 +159,15 @@ var lastRadios = {
     axesLastRadio: null,
     spearsLastRadio: null,  
 }
+//Prosperity
+var cultureProsperity = "prosperous";
 
 // INITITALIZATION
 $(function() {
     let culture = "barding";
     loadCultureBox(culture);
     loadExperienceBox(culture);
-    loadGearBox();
+    // loadGearBox();
  });
 
 // Generate character when user presses button
@@ -197,7 +199,7 @@ cultureInput.change(() => {
     let culture = getCulture();
     loadCultureBox(culture);
     loadExperienceBox(culture);
-    loadGearBox();
+    // loadGearBox();
 })
 
 // FUNCTIONS
@@ -841,7 +843,8 @@ function loadCultureBox(culture) {
             previousWeaponProficiencyInputs[0].click();
             previousWeapon2 = event.target.value;
             colorDefaultExperiences();
-        }) 
+        })
+        
     });
 }
 
@@ -933,7 +936,7 @@ function loadExperienceBox(culture) {
                 skillPointsText.html("Skill Points: " + skillPoints);
             }
 
-            // Handle adding new weapon selections
+            // Handle adding new weapon and armor selections
             $("#gearbox").load("public/gear.html", () => {
                 axesBox = $("#axesBox");
                 bowsBox = $("#bowsBox");
@@ -958,27 +961,14 @@ function loadExperienceBox(culture) {
                 bowsSelection = $("#bowsSelection");
                 swordsSelection = $("#swordsSelection");
                 spearsSelection = $("#spearsSelection");
+                
+                setCultureProsperity();
+                
             });
             
         })
         colorDefaultExperiences();
         experienceInputs[0].click();
-    });
-}
-
-function loadGearBox() {
-    $("#gearbox").load("public/gear.html", () => {
-        axesSelection = $("#axesSelection");
-        bowsSelection = $("#bowsSelection");
-        swordsSelection = $("#swordsSelection");
-        spearsSelection = $("#spearsSelection");
-        axesBox = $("#axesBox");
-        bowsBox = $("#bowsBox");
-        swordsBox = $("#swordsBox");
-        spearsBox = $("#spearsBox");
-        armourSelection = $("#armourSelection");
-        shieldSelection = $("#shieldSelection");
-        helmToggle = $("#usehelm");
     });
 }
 
@@ -1044,5 +1034,32 @@ function setAllRadiosDefault() {
         swordsLastRadio: null,
         axesLastRadio: null,
         spearsLastRadio: null,  
+    }
+}
+
+function setCultureProsperity() {
+    switch (cultureInput.val()) {
+        case "Elf of Lindon":
+            $('#armourSelection option[value="Coat of Mail"]').remove();
+            $('#armourSelection option[value="Mail-Shirt"]').remove();
+            $('#shieldSelection option[value="Great Shield"]').remove();
+            $('#shieldSelection option[value="Shield"]').remove();
+            break;
+        case "Hobbit of The Shire":
+            $('#armourSelection option[value="Coat of Mail"]').remove();
+            $('#shieldSelection option[value="Great Shield"]').remove();
+            break;
+        case "Man of Bree":
+            $('#armourSelection option[value="Coat of Mail"]').remove();
+            $('#shieldSelection option[value="Great Shield"]').remove();
+            break;
+        case "Rangers of The North":
+            $('#armourSelection option[value="Coat of Mail"]').remove();
+            $('#armourSelection option[value="Mail-Shirt"]').remove();
+            $('#shieldSelection option[value="Great Shield"]').remove();
+            $('#shieldSelection option[value="Shield"]').remove();
+            break;
+        default:
+            break;
     }
 }
