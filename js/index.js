@@ -134,7 +134,6 @@ var skillPointsText = $("#skillPointsText");
 
 // EXPERIENCE SYSTEM
 var skillPoints = 10;
-var lastRadio = null;
 const skillUpgradeCost = [1,2,3,5];
 const combatUpgradeCost = [2,4,6];
 var lastRadios = {
