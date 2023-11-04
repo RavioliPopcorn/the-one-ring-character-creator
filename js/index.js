@@ -174,6 +174,11 @@ $(function() {
 
 // Generate character when user presses button
 $("#genCharButton").click(() => {
+    if (skillPoints != 0) {
+        alert("You have unspent skill points remaining!");
+        return;
+    }
+
     resetCharSheet();
     nameText.append(nameInput.val());
     ageText.append(ageInput.val());
