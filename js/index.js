@@ -82,6 +82,8 @@ var swordsBox = $("#swordsBox");
 var spearsBox = $("#spearsBox");
 var distinctiveFeature1 = $("#distinctiveFeature1");
 var distinctiveFeature2 = $("#distinctiveFeature2");
+var callingSkillSelection1 = $("#callingSkillSelection1");
+var callingSkillSelection2 = $("#callingSkillSelection2");
 
 
 // OUTPUTS
@@ -168,13 +170,22 @@ $(function() {
     let culture = "barding";
     loadCultureBox(culture);
     loadExperienceBox(culture);
-    // loadGearBox();
+
+    let calling = "captain";
+    loadCallingbox(calling);
  });
 
 // Generate character when user presses button
 $("#genCharButton").click(() => {
     if (skillPoints != 0) {
         alert("You have unspent skill points remaining!");
+        return;
+    }
+
+    if (callingSkillSelection1.val() === callingSkillSelection2.val ||
+    callingSkillSelection1.val() === favoredSkillSelection.val() ||
+    callingSkillSelection2.val() === favoredSkillSelection.val()) {
+        alert("A skill has been favored more than once!\nChoose another favored skill");
         return;
     }
 
@@ -190,6 +201,8 @@ $("#genCharButton").click(() => {
 
     callingText.append(callingInput.val());
     getCallingInfo();
+    setFavoredSkill(callingSkillSelection1.val());
+    setFavoredSkill(callingSkillSelection2.val());
 
     getExperiences();
     getWarGear();
@@ -207,8 +220,13 @@ cultureInput.change(() => {
     let culture = getCulture();
     loadCultureBox(culture);
     loadExperienceBox(culture);
-    // loadGearBox();
-})
+});
+
+// load favored skills
+callingInput.change(() => {
+    let calling = getCalling();
+    loadCallingbox(calling);
+});
 
 // FUNCTIONS
 
@@ -601,6 +619,10 @@ function getCulture() {
     }
 }
 
+function getCalling() {
+    return callingInput.val().replace(" ", "").toLowerCase();
+}
+
 function getWarGear() {
     $.getJSON(weaponsPath, (weapons) => {
         let axe = weapons.find((axe) => axe.name === axesSelection.val());
@@ -791,6 +813,7 @@ var previousWeapon2;
 var previousFeature1;
 var previousFeature2;
 function loadCultureBox(culture) {
+    skillPoints = 10;
     $("#culturebox").load(`public/heroic-cultures/${culture}.html`, () => {
         attributeSelection = $("#attributeSelection");
         favoredSkillSelection = $("#favoredSkillSelection");
@@ -805,7 +828,6 @@ function loadCultureBox(culture) {
             previousWeapon1 = event.target.value
         }).change((event) => {
             // Deal with changing proficiency (Change default weapon rank)
-            setAllRadiosDefault();
             let chosenProficiency = event.target.value;
             let possibleProficiencies = [
                 event.target.children[0].value,
@@ -843,7 +865,6 @@ function loadCultureBox(culture) {
             previousWeapon2 = event.target.value;
         }).change((event) => {
             // Deal with changing proficiency (Change default weapon rank)
-            setAllRadiosDefault();
             let chosenProficiency = event.target.value;
             let weapon2ProficiencyInputs = getWeaponExperienceInputs(chosenProficiency);
             let previousWeaponProficiencyInputs = getWeaponExperienceInputs(previousWeapon2);
@@ -885,6 +906,36 @@ function loadCultureBox(culture) {
     
     });
 }
+
+var previousCallingSkill1;
+var previousCallingSkill2;
+function loadCallingbox(calling) {
+    $("#callingbox").load(`public/callings/${calling}.html`, () => {
+        callingSkillSelection1 = $("#callingSkillSelection1");
+        callingSkillSelection2 = $("#callingSkillSelection2");
+        
+        callingSkillSelection1.focus((event) => {
+            previousCallingSkill1 = event.target.value;
+        }).click((event) => {
+            previousCallingSkill1 = event.target.value
+        }).change((event) => {
+            
+            let chosenSkill = event.target.value;
+            let possibleSkills = [
+                event.target.children[0].value,
+                event.target.children[1].value,
+                event.target.children[2].value
+            ];
+            $(`#callingSkillSelection2 option[value=${chosenSkill}]`).remove();
+            let index = possibleSkills.indexOf(`${chosenSkill}`);
+            if (index > -1) { 
+                possibleSkills.splice(index, 1); 
+            }
+            callingSkillSelection2.append("beforeEnd", 
+            `<option value="${previousCallingSkill1}">${previousCallingSkill1[0].toUpperCase()+previousCallingSkill1.slice(1)}</option>`);                  
+        })
+    });
+};
 
 function loadExperienceBox(culture) {
     $("#experiencebox").load(`public/culture-experiences/${culture}-experience.html`, () => {
@@ -1025,6 +1076,7 @@ function getWeaponExperienceInputs(experienceType) {
     }
 }
 
+// Function essentiially auto refunds skill points too
 function setAllRadiosDefault() {
     aweExperienceInputs[0].click();
     athleticsExperienceInputs[0].click();
