@@ -828,6 +828,7 @@ function loadCultureBox(culture) {
             previousWeapon1 = event.target.value
         }).change((event) => {
             // Deal with changing proficiency (Change default weapon rank)
+            setAllRadiosDefault();
             let chosenProficiency = event.target.value;
             let possibleProficiencies = [
                 event.target.children[0].value,
@@ -865,6 +866,7 @@ function loadCultureBox(culture) {
             previousWeapon2 = event.target.value;
         }).change((event) => {
             // Deal with changing proficiency (Change default weapon rank)
+            setAllRadiosDefault();
             let chosenProficiency = event.target.value;
             let weapon2ProficiencyInputs = getWeaponExperienceInputs(chosenProficiency);
             let previousWeaponProficiencyInputs = getWeaponExperienceInputs(previousWeapon2);
