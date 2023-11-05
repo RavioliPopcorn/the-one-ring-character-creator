@@ -827,7 +827,7 @@ function loadCultureBox(culture) {
         }).click((event) => {
             previousWeapon1 = event.target.value
         }).change((event) => {
-            // Deal with changing proficiency (Change default weapon rank)
+            // Deal with changing proficiency (Change default weapon rank) 
             setAllRadiosDefault();
             let chosenProficiency = event.target.value;
             let possibleProficiencies = [
